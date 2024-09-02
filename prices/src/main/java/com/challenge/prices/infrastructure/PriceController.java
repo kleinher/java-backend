@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
+
 public class PriceController {
 
     private final PriceService priceService;
@@ -24,9 +24,7 @@ public class PriceController {
             @RequestParam("brandId") Long brandId,
             @RequestParam("applicationDate") String applicationDateStr) {
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
-        LocalDateTime applicationDate = LocalDateTime.parse(applicationDateStr, formatter);
-
+        LocalDateTime applicationDate = LocalDateTime.parse(applicationDateStr);
         Optional<PriceDTO> priceDTO = priceService.getPrice(productId, brandId, applicationDate);
 
         return priceDTO.map(ResponseEntity::ok)
