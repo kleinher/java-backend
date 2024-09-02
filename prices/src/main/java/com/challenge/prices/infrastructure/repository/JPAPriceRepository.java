@@ -1,4 +1,4 @@
-package com.challenge.prices.infrastructure.outbound.database;
+package com.challenge.prices.infrastructure.repository;
 
 import com.challenge.prices.domain.models.Price;
 import org.springframework.data.jpa.repository.JpaRepository;
