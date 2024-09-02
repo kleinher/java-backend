@@ -26,9 +26,10 @@ public class PriceController {
             @RequestParam("applicationDate") String applicationDateStr) {
 
         LocalDateTime applicationDate = LocalDateTime.parse(applicationDateStr);
-        Optional<PriceDTO> priceDTO = priceService.getPrice(productId, brandId, applicationDate);
 
-        return priceDTO.map(ResponseEntity::ok)
+        return priceService.getPrice(productId, brandId, applicationDate)
+                .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
+
     }
 }
