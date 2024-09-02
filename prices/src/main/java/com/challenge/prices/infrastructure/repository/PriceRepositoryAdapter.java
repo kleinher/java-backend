@@ -1,9 +1,9 @@
 package com.challenge.prices.infrastructure.repository;
 
-import com.challenge.prices.domain.models.Price;
 import com.challenge.prices.domain.PriceRepository;
-import org.springframework.stereotype.Component;
+import com.challenge.prices.domain.models.Price;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
