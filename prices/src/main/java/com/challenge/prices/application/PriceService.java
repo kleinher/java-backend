@@ -1,7 +1,7 @@
 package com.challenge.prices.application;
 
 import com.challenge.prices.domain.models.Price;
-import com.challenge.prices.domain.port.in.GetPriceUseCase;
+import com.challenge.prices.domain.port.in.PriceServiceUseCase;
 import com.challenge.prices.domain.port.out.GetPricePort;
 import com.challenge.prices.util.dto.PriceDTO;
 import com.challenge.prices.util.mapper.PriceMapper;
@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class GetPriceService implements GetPriceUseCase {
+public class PriceService implements PriceServiceUseCase {
 
     private final GetPricePort getPricePort;
     private final PriceMapper priceMapper;
