@@ -3,6 +3,7 @@ package com.challenge.prices.infrastructure;
 import com.challenge.prices.domain.PriceService;
 import com.challenge.prices.domain.models.PriceDTO;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,7 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
-
+@CommonsLog
 public class PriceController {
 
     private final PriceService priceService;
