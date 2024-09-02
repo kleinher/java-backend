@@ -57,6 +57,7 @@ public class PriceControllerTest {
         assertEquals(priceDTO.getStartDate(), result.getBody().getStartDate());
         assertEquals(priceDTO.getEndDate(), result.getBody().getEndDate());
         assertEquals(priceDTO.getPrice(), result.getBody().getPrice());
+        assertEquals(result.getStatusCode().value(), 200);
     }
 
     @Test
