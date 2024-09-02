@@ -1,9 +1,9 @@
 package com.challenge.prices.application;
 
-import com.challenge.prices.domain.models.Price;
-import com.challenge.prices.domain.PriceRepository;
-import com.challenge.prices.domain.models.PriceDTO;
 import com.challenge.prices.domain.PriceMapper;
+import com.challenge.prices.domain.PriceRepository;
+import com.challenge.prices.domain.models.Price;
+import com.challenge.prices.domain.models.PriceDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
