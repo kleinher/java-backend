@@ -6,6 +6,7 @@ import com.challenge.prices.domain.models.Price;
 import com.challenge.prices.infrastructure.repository.PriceRepositoryAdapter;
 import com.challenge.prices.domain.models.PriceDTO;
 import com.challenge.prices.domain.PriceMapper;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -17,7 +18,6 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 public class PriceServiceTest {
@@ -30,17 +30,20 @@ public class PriceServiceTest {
     @InjectMocks
     private PriceService priceService;
 
-    private long productId;
-    private long brandId;
-    private LocalDateTime applicationDate;
+    private static long productId;
+    private static long brandId;
+    private static LocalDateTime applicationDate;
 
-    @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.openMocks(this);
+    @BeforeAll
+    public static void setUp() {
         productId = 1;
         brandId = 35455;
         applicationDate = LocalDateTime.parse("2020-06-16T21:00:00");
 
+    }
+    @BeforeEach
+    public void init() {
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
