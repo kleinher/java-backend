@@ -1,7 +1,7 @@
-package com.challenge.prices.infrastructure.inbound.controllers;
+package com.challenge.prices.infrastructure;
 
-import com.challenge.prices.domain.port.in.PriceServiceUseCase;
-import com.challenge.prices.util.dto.PriceDTO;
+import com.challenge.prices.domain.PriceService;
+import com.challenge.prices.domain.models.PriceDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PriceController {
 
-    private final PriceServiceUseCase priceService;
+    private final PriceService priceService;
 
     @GetMapping("/api/prices")
     public ResponseEntity<PriceDTO> getPrice(

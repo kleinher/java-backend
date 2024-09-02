@@ -1,4 +1,4 @@
-package com.challenge.prices.util.dto;
+package com.challenge.prices.domain.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

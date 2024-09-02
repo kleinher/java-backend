@@ -1,10 +1,9 @@
 package com.challenge.prices.application;
 
 import com.challenge.prices.domain.models.Price;
-import com.challenge.prices.domain.port.in.PriceServiceUseCase;
-import com.challenge.prices.domain.port.out.GetPricePort;
-import com.challenge.prices.util.dto.PriceDTO;
-import com.challenge.prices.util.mapper.PriceMapper;
+import com.challenge.prices.domain.PriceRepository;
+import com.challenge.prices.domain.models.PriceDTO;
+import com.challenge.prices.domain.PriceMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +12,9 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class PriceService implements PriceServiceUseCase {
+public class PriceService implements com.challenge.prices.domain.PriceService {
 
-    private final GetPricePort getPricePort;
+    private final PriceRepository getPricePort;
     private final PriceMapper priceMapper;
 
     @Override
