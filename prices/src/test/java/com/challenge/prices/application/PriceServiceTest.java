@@ -1,16 +1,16 @@
 package com.challenge.prices.application;
 
 
-import com.challenge.prices.domain.models.Price;
-import com.challenge.prices.infrastructure.repository.PriceRepositoryAdapter;
-import com.challenge.prices.domain.models.PriceDTO;
 import com.challenge.prices.domain.PriceMapper;
+import com.challenge.prices.domain.models.Price;
+import com.challenge.prices.domain.models.PriceDTO;
+import com.challenge.prices.infrastructure.repository.PriceRepositoryAdapter;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -21,9 +21,9 @@ import static org.mockito.Mockito.when;
 
 public class PriceServiceTest {
 
-    @MockBean
+    @Mock
     private PriceRepositoryAdapter priceRepositoryAdapter;
-    @MockBean
+    @Mock
     private PriceMapper priceMapper;
 
     @InjectMocks
