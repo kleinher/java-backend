@@ -1,3 +1,4 @@
+##200
 ### Test 1: Petición a las 10:00 del día 14 del producto 35455 para la brand 1 (ZARA)
 GET http://localhost:8080/api/prices?productId=35455&brandId=1&applicationDate=2020-06-14T10:00:00
 
@@ -12,3 +13,10 @@ GET http://localhost:8080/api/prices?productId=35455&brandId=1&applicationDate=2
 
 ### Test 5: Petición a las 21:00 del día 16 del producto 35455 para la brand 1 (ZARA)
 GET http://localhost:8080/api/prices?productId=35455&brandId=1&applicationDate=2020-06-16T21:00:00
+
+##404
+### Test 6: Producto 1 para la brand 35455 (ZARA)
+GET http://localhost:8080/api/prices?productId=1&brandId=35455&applicationDate=2020-06-16T21:00:00
+
+### Test 6: Producto 1 para la brand 35455 (ZARA)
+GET http://localhost:8080/api/prices?productId=1&brandId=35455&applicationDate=2020-06-1621:00:00
