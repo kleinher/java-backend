@@ -1,7 +1,6 @@
-package application;
+package com.challenge.prices.application;
 
 
-import com.challenge.prices.application.PriceService;
 import com.challenge.prices.domain.models.Price;
 import com.challenge.prices.infrastructure.repository.PriceRepositoryAdapter;
 import com.challenge.prices.domain.models.PriceDTO;
@@ -10,8 +9,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -22,9 +21,9 @@ import static org.mockito.Mockito.when;
 
 public class PriceServiceTest {
 
-    @Mock
+    @MockBean
     private PriceRepositoryAdapter priceRepositoryAdapter;
-    @Mock
+    @MockBean
     private PriceMapper priceMapper;
 
     @InjectMocks
@@ -54,8 +53,26 @@ public class PriceServiceTest {
 
         LocalDateTime testDate = LocalDateTime.parse("2020-06-14T10:00:00");
 
-        Price price = new Price(0L,  brandId, startDate, endDate,priceList, productId , 0,new BigDecimal("35.50"),  "EUR");
-        PriceDTO priceDTO = new PriceDTO(productId, brandId, priceList, startDate, endDate, new BigDecimal("35.50"));
+        Price price = Price.builder()
+            .id(0L)
+            .brandId(brandId)
+            .startDate(startDate)
+            .endDate(endDate)
+            .priceList(priceList)
+            .productId(productId)
+            .priority(0)
+            .price(new BigDecimal("35.50"))
+            .currency("EUR")
+            .build();
+
+        PriceDTO priceDTO = PriceDTO.builder()
+            .productId(productId)
+            .brandId(brandId)
+            .priceList(priceList)
+            .startDate(startDate)
+            .endDate(endDate)
+            .price(new BigDecimal("35.50"))
+            .build();
 
         when(priceRepositoryAdapter.getPrice(productId, brandId, testDate)).thenReturn(Optional.of(price));
         when(priceMapper.toDto(price)).thenReturn(priceDTO);
