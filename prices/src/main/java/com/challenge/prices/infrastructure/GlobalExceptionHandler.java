@@ -15,12 +15,15 @@ import java.util.Map;
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
+    private static final String TIMESTAMP = "timestamp";
+    private static final String MESSAGE = "message";
+    private static final String DETAILS = "details";
     @ExceptionHandler(DateTimeParseException.class)
     public ResponseEntity<Object> handleDateTimeParseException(DateTimeParseException ex, WebRequest request) {
         Map<String, Object> body = new HashMap<>();
-        body.put("timestamp", LocalDateTime.now());
-        body.put("message", "Invalid date format");
-        body.put("details", ex.getParsedString());
+        body.put(TIMESTAMP, LocalDateTime.now());
+        body.put(MESSAGE, "Invalid date format");
+        body.put(DETAILS, ex.getParsedString());
 
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
@@ -30,9 +33,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<Object> handleRuntimeException(RuntimeException ex, WebRequest request) {
         Map<String, Object> body = new HashMap<>();
-        body.put("timestamp", LocalDateTime.now());
-        body.put("message", "A runtime error occurred");
-        body.put("details", ex.getMessage());
+        body.put(TIMESTAMP, LocalDateTime.now());
+        body.put(MESSAGE, "A runtime error occurred");
+        body.put(DETAILS, ex.getMessage());
 
         return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -40,9 +43,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleGlobalException(Exception ex, WebRequest request) {
         Map<String, Object> body = new HashMap<>();
-        body.put("timestamp", LocalDateTime.now());
-        body.put("message", "An unexpected error occurred");
-        body.put("details", ex.getMessage());
+        body.put(TIMESTAMP, LocalDateTime.now());
+        body.put(MESSAGE, "An unexpected error occurred");
+        body.put(DETAILS, ex.getMessage());
 
         return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
     }
