@@ -78,7 +78,7 @@ class ProductServiceTest {
         when(priceMapper.toDto(product)).thenReturn(priceDTO);
 
         Optional<PriceDTO> result = priceService.getPrice(productId, brandId, testDate);
-        assert(result.isPresent());
+        assertTrue(result.isPresent());
         assertEquals(priceDTO.getProductId(), result.get().getProductId());
         assertEquals(priceDTO.getBrandId(), result.get().getBrandId());
         assertEquals(priceDTO.getPriceList(), result.get().getPriceList());
