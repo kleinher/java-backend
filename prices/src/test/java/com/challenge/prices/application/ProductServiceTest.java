@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 class ProductServiceTest {
@@ -92,7 +92,7 @@ class ProductServiceTest {
         when(priceRepositoryAdapter.getPrice(productId, brandId, applicationDate)).thenReturn(Optional.empty());
 
         Optional<PriceDTO> result = priceService.getPrice(productId, brandId, applicationDate);
-        assert(result.isEmpty());
+        assertTrue(result.isEmpty());
     }
 
 }
