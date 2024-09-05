@@ -12,13 +12,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-public class IntegrationTest {
+class IntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void testGetPriceById() throws Exception {
+    void testGetPriceById() throws Exception {
         mockMvc.perform(get("/api/prices")
                         .param("productId", "35455")
                         .param("brandId", "1")

@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(PriceController.class)
-public class PriceControllerTest {
+public class ProductControllerTest {
 
     @Autowired
     private MockMvc mockMvc;

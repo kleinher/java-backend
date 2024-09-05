@@ -1,6 +1,6 @@
 package com.challenge.prices.infrastructure.repository;
 
-import com.challenge.prices.domain.models.Price;
+import com.challenge.prices.domain.models.Product;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -12,19 +12,19 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DataJpaTest
-public class JPAPriceRepositoryTest {
+class JPAProductRepositoryTest {
 
     @Autowired
     private JPAPriceRepository jpaPriceRepository;
 
     @Test
-    public void test() {
+    void test() {
         // Given
         long productId = 1;
         long brandId = 35455;
         LocalDateTime applicationDate = LocalDateTime.parse("2024-09-02T12:00:00");
 
-        Price price = Price.builder()
+        Product product = Product.builder()
                 .productId(productId)
                 .brandId(brandId)
                 .priceList(1)
@@ -34,9 +34,9 @@ public class JPAPriceRepositoryTest {
                 .price(BigDecimal.valueOf(35.50))
                 .currency("EUR")
                 .build();
-        jpaPriceRepository.save(price);
+        jpaPriceRepository.save(product);
         // When
-        Optional<Price> retrivedPrice = jpaPriceRepository.findFirstByProductIdAndBrandIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDesc(productId, brandId, applicationDate,applicationDate);
+        Optional<Product> retrivedPrice = jpaPriceRepository.findFirstByProductIdAndBrandIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDesc(productId, brandId, applicationDate,applicationDate);
 
         // Then
         assertTrue(retrivedPrice.isPresent());

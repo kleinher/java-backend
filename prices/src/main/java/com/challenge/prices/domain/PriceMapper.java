@@ -1,6 +1,6 @@
 package com.challenge.prices.domain;
 
-import com.challenge.prices.domain.models.Price;
+import com.challenge.prices.domain.models.Product;
 import com.challenge.prices.domain.models.PriceDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -15,7 +15,7 @@ public interface PriceMapper {
     @Mapping(source = "endDate", target = "endDate")
     @Mapping(source = "price", target = "price")
     @Mapping(source = "currency", target = "currency")
-    PriceDTO toDto(Price price);
+    PriceDTO toDto(Product product);
 
     @Mapping(source = "productId", target = "productId")
     @Mapping(source = "brandId", target = "brandId")
@@ -23,5 +23,5 @@ public interface PriceMapper {
     @Mapping(source = "startDate", target = "startDate")
     @Mapping(source = "endDate", target = "endDate")
     @Mapping(source = "price", target = "price")
-    Price toEntity(PriceDTO priceDTO);
+    Product toEntity(PriceDTO priceDTO);
 }

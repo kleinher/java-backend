@@ -2,7 +2,7 @@ package com.challenge.prices.application;
 
 
 import com.challenge.prices.domain.PriceMapper;
-import com.challenge.prices.domain.models.Price;
+import com.challenge.prices.domain.models.Product;
 import com.challenge.prices.domain.models.PriceDTO;
 import com.challenge.prices.infrastructure.repository.PriceRepositoryAdapter;
 import org.junit.jupiter.api.BeforeAll;
@@ -19,7 +19,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-public class PriceServiceTest {
+public class ProductServiceTest {
 
     @Mock
     private PriceRepositoryAdapter priceRepositoryAdapter;
@@ -27,7 +27,7 @@ public class PriceServiceTest {
     private PriceMapper priceMapper;
 
     @InjectMocks
-    private PriceService priceService;
+    private PriceServiceImp priceService;
 
     private static long productId;
     private static long brandId;
@@ -53,7 +53,7 @@ public class PriceServiceTest {
 
         LocalDateTime testDate = LocalDateTime.parse("2020-06-14T10:00:00");
 
-        Price price = Price.builder()
+        Product product = Product.builder()
             .id(0L)
             .brandId(brandId)
             .startDate(startDate)
@@ -74,8 +74,8 @@ public class PriceServiceTest {
             .price(new BigDecimal("35.50"))
             .build();
 
-        when(priceRepositoryAdapter.getPrice(productId, brandId, testDate)).thenReturn(Optional.of(price));
-        when(priceMapper.toDto(price)).thenReturn(priceDTO);
+        when(priceRepositoryAdapter.getPrice(productId, brandId, testDate)).thenReturn(Optional.of(product));
+        when(priceMapper.toDto(product)).thenReturn(priceDTO);
 
         Optional<PriceDTO> result = priceService.getPrice(productId, brandId, testDate);
         assert(result.isPresent());
