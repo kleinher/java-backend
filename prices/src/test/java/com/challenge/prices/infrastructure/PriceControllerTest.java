@@ -94,8 +94,13 @@ public class PriceControllerTest {
     }
 
     @Test
-    public void getPriceBadRequest(){
-        //TODO
+    public void getPriceBadRequest() throws Exception {
+        mockMvc.perform(get("/api/prices")
+                        .param("productId", "a")
+                        .param("brandId", String.valueOf(brandId))
+                        .param("applicationDate", aplicationDateString))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.detail").value("Failed to convert 'productId' with value: 'a'"));
     }
 
 
