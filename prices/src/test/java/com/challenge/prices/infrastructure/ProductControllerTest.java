@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(PriceController.class)
-public class ProductControllerTest {
+class ProductControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -51,7 +51,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void getPriceOk() throws Exception {
+    void getPriceOk() throws Exception {
         PriceDTO priceDTO = PriceDTO.builder()
                 .productId(productId)
                 .brandId(brandId)
@@ -78,7 +78,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void getPriceNotFound()throws Exception {
+    void getPriceNotFound()throws Exception {
         when(priceService.getPrice(productId, brandId, applicationDate)).thenReturn(Optional.empty());
 
         mockMvc.perform(get("/api/prices")
@@ -89,12 +89,19 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void getPriceException(){
-        //TODO
+    void getPriceRuntimeException() throws Exception {
+        when(priceService.getPrice(productId, brandId, applicationDate)).thenThrow(new RuntimeException("Error"));
+
+        mockMvc.perform(get("/api/prices")
+                        .param("productId", String.valueOf(productId))
+                        .param("brandId", String.valueOf(brandId))
+                        .param("applicationDate", aplicationDateString))
+                .andExpect(status().isInternalServerError())
+                .andExpect(jsonPath("$.message").value("A runtime error occurred"));
     }
 
     @Test
-    public void getPriceBadRequest() throws Exception {
+    void getPriceBadRequest() throws Exception {
         mockMvc.perform(get("/api/prices")
                         .param("productId", "a")
                         .param("brandId", String.valueOf(brandId))

@@ -19,7 +19,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-public class ProductServiceTest {
+class ProductServiceTest {
 
     @Mock
     private PriceRepositoryAdapter priceRepositoryAdapter;
@@ -46,7 +46,7 @@ public class ProductServiceTest {
     }
 
     @Test
-    public void testGetPriceOk() {
+    void testGetPriceOk() {
         Integer priceList = 1;
         LocalDateTime startDate = LocalDateTime.parse("2020-06-14T00:00:00");
         LocalDateTime endDate = LocalDateTime.parse("2020-12-31T23:59:59");
@@ -88,7 +88,7 @@ public class ProductServiceTest {
     }
 
     @Test
-    public void testGetPriceNotFound() {
+    void testGetPriceNotFound() {
         when(priceRepositoryAdapter.getPrice(productId, brandId, applicationDate)).thenReturn(Optional.empty());
 
         Optional<PriceDTO> result = priceService.getPrice(productId, brandId, applicationDate);
