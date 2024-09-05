@@ -6,6 +6,6 @@ CREATE TABLE prices (
                         price_list INT NOT NULL,
                         product_id BIGINT NOT NULL,
                         priority INT NOT NULL,
-                        price DECIMAL(19, 2) NOT NULL,
+                        product DECIMAL(19, 2) NOT NULL,
                         currency VARCHAR(3) NOT NULL
 );
