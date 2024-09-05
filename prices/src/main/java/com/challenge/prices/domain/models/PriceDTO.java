@@ -20,4 +20,5 @@ public class PriceDTO {
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private BigDecimal price;
+    private String currency;
 }
