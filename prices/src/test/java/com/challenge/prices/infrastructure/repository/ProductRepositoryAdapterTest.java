@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
-public class ProductRepositoryAdapterTest {
+class ProductRepositoryAdapterTest {
 
     @Mock
     private JPAPriceRepository jpaPriceRepository;
@@ -29,7 +29,7 @@ public class ProductRepositoryAdapterTest {
     }
 
     @Test
-    public void test() {
+    void test() {
         // Given
         long productId = 1;
         long brandId = 35455;
