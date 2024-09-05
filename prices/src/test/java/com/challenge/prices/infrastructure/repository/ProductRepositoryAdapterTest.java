@@ -55,12 +55,12 @@ class ProductRepositoryAdapterTest {
         assertTrue(retrivedPrice.isPresent());
         assertEquals(retrivedPrice.get().getProductId(), productId);
         assertEquals(retrivedPrice.get().getBrandId(), brandId);
-        assertEquals(retrivedPrice.get().getPriceList(), 1);
-        assertEquals(retrivedPrice.get().getPriority(), 0);
+        assertEquals( 1,retrivedPrice.get().getPriceList());
+        assertEquals( 0,retrivedPrice.get().getPriority());
         assertEquals(retrivedPrice.get().getStartDate(), LocalDateTime.parse("2024-06-14T00:00"));
         assertEquals(retrivedPrice.get().getEndDate(), LocalDateTime.parse("2024-12-31T23:59:59"));
         assertEquals(retrivedPrice.get().getPrice(), BigDecimal.valueOf(35.50));
-        assertEquals(retrivedPrice.get().getCurrency(), "EUR");
+        assertEquals("EUR",retrivedPrice.get().getCurrency());
 
     }
 
