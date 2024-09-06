@@ -29,7 +29,7 @@ class ProductRepositoryAdapterTest {
     }
 
     @Test
-    void test() {
+    void testPriceFound() {
         // Given
         long productId = 1;
         long brandId = 35455;
@@ -62,6 +62,21 @@ class ProductRepositoryAdapterTest {
         assertEquals(retrivedPrice.get().getPrice(), BigDecimal.valueOf(35.50));
         assertEquals("EUR",retrivedPrice.get().getCurrency());
 
+    }
+
+    @Test
+    void testPriceNotFound() {
+        // Given
+        long productId = 1;
+        long brandId = 35455;
+        LocalDateTime applicationDate = LocalDateTime.parse("2024-09-02T12:00:00");
+
+        when(jpaPriceRepository.findFirstByProductIdAndBrandIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDesc(productId,brandId,applicationDate,applicationDate)).thenReturn(Optional.empty());
+        // When
+        Optional<Product> retrivedPrice = priceRepositoryAdapter.getPrice(productId, brandId, applicationDate);
+
+        // Then
+        assertTrue(retrivedPrice.isEmpty());
     }
 
 
