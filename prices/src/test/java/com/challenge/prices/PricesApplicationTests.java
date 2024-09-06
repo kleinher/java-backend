@@ -27,4 +27,40 @@ class PricesApplicationTests {
                 .andExpect(jsonPath("$.price").value(35.50))
                 .andExpect(jsonPath("$.currency").value("EUR"));
     }
+
+    @Test
+    void testNotFound() throws Exception {
+        mockMvc.perform(get("/api/prices")
+                        .param("productId", "0")
+                        .param("brandId", "0")
+                        .param("applicationDate", "2020-06-14T10:00:00"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void testBadRequestProductId() throws Exception {
+        mockMvc.perform(get("/api/prices")
+                        .param("productId", "a")
+                        .param("brandId", "0")
+                        .param("applicationDate", "2020-06-14T10:00:00"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void testBadRequestBrandId() throws Exception {
+        mockMvc.perform(get("/api/prices")
+                        .param("productId", "0")
+                        .param("brandId", "a")
+                        .param("applicationDate", "2020-06-14T10:00:00"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void testBadRequestApplicationDate() throws Exception {
+        mockMvc.perform(get("/api/prices")
+                        .param("productId", "0")
+                        .param("brandId", "0")
+                        .param("applicationDate", "a"))
+                .andExpect(status().isBadRequest());
+    }
 }
