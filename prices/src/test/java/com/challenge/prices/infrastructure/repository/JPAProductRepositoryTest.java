@@ -18,7 +18,7 @@ class JPAProductRepositoryTest {
     private JPAPriceRepository jpaPriceRepository;
 
     @Test
-    void test() {
+    void testFindPriceInRepository() {
         // Given
         long productId = 1;
         long brandId = 35455;
@@ -40,5 +40,19 @@ class JPAProductRepositoryTest {
 
         // Then
         assertTrue(retrivedPrice.isPresent());
+    }
+
+    @Test
+    void testFindPriceInRepositoryNotFound() {
+        // Given
+        long productId = 1;
+        long brandId = 35455;
+        LocalDateTime applicationDate = LocalDateTime.parse("2024-09-02T12:00:00");
+
+        // When
+        Optional<Product> retrivedPrice = jpaPriceRepository.findFirstByProductIdAndBrandIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDesc(productId, brandId, applicationDate,applicationDate);
+
+        // Then
+        assertTrue(retrivedPrice.isEmpty());
     }
 }
