@@ -3,7 +3,7 @@ package com.challenge.prices.application;
 import com.challenge.prices.domain.PriceMapper;
 import com.challenge.prices.domain.PriceRepository;
 import com.challenge.prices.domain.PriceService;
-import com.challenge.prices.domain.models.Product;
+import com.challenge.prices.domain.models.Prices;
 import com.challenge.prices.domain.models.PriceDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class PriceServiceImp implements PriceService {
 
     @Override
     public Optional<PriceDTO> getPrice(Long productId, Long brandId, LocalDateTime applicationDate) {
-        Optional<Product> price = getPricePort.getPrice(productId, brandId, applicationDate);
+        Optional<Prices> price = getPricePort.getPrice(productId, brandId, applicationDate);
 
         return price.map(priceMapper::toDto);
     }
