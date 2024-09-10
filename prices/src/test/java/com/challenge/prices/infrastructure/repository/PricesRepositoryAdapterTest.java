@@ -1,6 +1,7 @@
 package com.challenge.prices.infrastructure.repository;
 
-import com.challenge.prices.domain.models.Product;
+import com.challenge.prices.domain.models.Brand;
+import com.challenge.prices.domain.models.Prices;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -9,13 +10,15 @@ import org.mockito.MockitoAnnotations;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
-class ProductRepositoryAdapterTest {
+class PricesRepositoryAdapterTest {
 
     @Mock
     private JPAPriceRepository jpaPriceRepository;
@@ -35,10 +38,10 @@ class ProductRepositoryAdapterTest {
         long brandId = 35455;
         LocalDateTime applicationDate = LocalDateTime.parse("2024-09-02T12:00:00");
 
-        Product product = Product.builder()
+        Prices prices = Prices.builder()
                 .id(1L)
                 .productId(productId)
-                .brandId(brandId)
+                .brand(new Brand(35455L, "ZARA", new ArrayList<Prices>()))
                 .priceList(1)
                 .priority(0)
                 .startDate(LocalDateTime.parse("2024-06-14T00:00:00"))
@@ -47,14 +50,14 @@ class ProductRepositoryAdapterTest {
                 .currency("EUR")
                 .build();
 
-        when(jpaPriceRepository.findFirstByProductIdAndBrandIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDesc(productId,brandId,applicationDate,applicationDate)).thenReturn(Optional.of(product));
+        when(jpaPriceRepository.findFirstByProductIdAndBrandIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDesc(productId,brandId,applicationDate,applicationDate)).thenReturn(Optional.of(prices));
         // When
-        Optional<Product> retrivedPrice = priceRepositoryAdapter.getPrice(productId, brandId, applicationDate);
+        Optional<Prices> retrivedPrice = priceRepositoryAdapter.getPrice(productId, brandId, applicationDate);
 
         // Then
         assertTrue(retrivedPrice.isPresent());
         assertEquals(retrivedPrice.get().getProductId(), productId);
-        assertEquals(retrivedPrice.get().getBrandId(), brandId);
+        assertEquals(retrivedPrice.get().getBrand().getId(), brandId);
         assertEquals( 1,retrivedPrice.get().getPriceList());
         assertEquals( 0,retrivedPrice.get().getPriority());
         assertEquals(retrivedPrice.get().getStartDate(), LocalDateTime.parse("2024-06-14T00:00"));
@@ -73,7 +76,7 @@ class ProductRepositoryAdapterTest {
 
         when(jpaPriceRepository.findFirstByProductIdAndBrandIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDesc(productId,brandId,applicationDate,applicationDate)).thenReturn(Optional.empty());
         // When
-        Optional<Product> retrivedPrice = priceRepositoryAdapter.getPrice(productId, brandId, applicationDate);
+        Optional<Prices> retrivedPrice = priceRepositoryAdapter.getPrice(productId, brandId, applicationDate);
 
         // Then
         assertTrue(retrivedPrice.isEmpty());
