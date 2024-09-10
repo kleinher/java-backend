@@ -1,7 +1,6 @@
 package com.challenge.prices.infrastructure.repository;
 
 import com.challenge.prices.domain.PriceRepository;
-import com.challenge.prices.domain.models.Brand;
 import com.challenge.prices.domain.models.Prices;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
