@@ -1,7 +1,6 @@
-package com.challenge.prices.infrastructure;
+package com.challenge.prices.infrastructure.controller;
 
 import com.challenge.prices.domain.PriceService;
-import com.challenge.prices.domain.models.PriceDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.http.ResponseEntity;

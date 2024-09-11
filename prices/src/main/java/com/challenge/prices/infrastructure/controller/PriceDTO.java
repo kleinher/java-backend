@@ -1,4 +1,4 @@
-package com.challenge.prices.domain.models;
+package com.challenge.prices.infrastructure.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

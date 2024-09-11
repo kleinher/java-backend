@@ -1,7 +1,7 @@
 package com.challenge.prices.domain;
 
 import com.challenge.prices.domain.models.Prices;
-import com.challenge.prices.domain.models.PriceDTO;
+import com.challenge.prices.infrastructure.controller.PriceDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

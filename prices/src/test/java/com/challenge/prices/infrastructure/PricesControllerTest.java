@@ -1,7 +1,8 @@
 package com.challenge.prices.infrastructure;
 
 import com.challenge.prices.domain.PriceService;
-import com.challenge.prices.domain.models.PriceDTO;
+import com.challenge.prices.infrastructure.controller.PriceController;
+import com.challenge.prices.infrastructure.controller.PriceDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;

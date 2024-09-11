@@ -4,7 +4,7 @@ package com.challenge.prices.application;
 import com.challenge.prices.domain.PriceMapper;
 import com.challenge.prices.domain.models.Brand;
 import com.challenge.prices.domain.models.Prices;
-import com.challenge.prices.domain.models.PriceDTO;
+import com.challenge.prices.infrastructure.controller.PriceDTO;
 import com.challenge.prices.infrastructure.repository.PriceRepositoryAdapter;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;

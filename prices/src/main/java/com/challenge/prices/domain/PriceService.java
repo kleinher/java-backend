@@ -1,6 +1,6 @@
 package com.challenge.prices.domain;
 
-import com.challenge.prices.domain.models.PriceDTO;
+import com.challenge.prices.infrastructure.controller.PriceDTO;
 
 import java.time.LocalDateTime;
 import java.util.Optional;

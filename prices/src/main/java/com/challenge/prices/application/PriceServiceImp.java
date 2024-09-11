@@ -4,7 +4,7 @@ import com.challenge.prices.domain.PriceMapper;
 import com.challenge.prices.domain.PriceRepository;
 import com.challenge.prices.domain.PriceService;
 import com.challenge.prices.domain.models.Prices;
-import com.challenge.prices.domain.models.PriceDTO;
+import com.challenge.prices.infrastructure.controller.PriceDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
