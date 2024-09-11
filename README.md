@@ -4,11 +4,6 @@
 Este proyecto es una aplicación web construida con Spring Boot y Maven. 
 La aplicación es un servicio REST que permite consultar precios de productos en una base de datos H2.
 
-## Base de datos local
-
-La aplicación utiliza una base de datos H2 en memoria. 
-Al iniciar la aplicación, se cargan los datos de prueba en la base de datos.
-
 ## Requisitos
 
 - Java 21
