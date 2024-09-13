@@ -63,4 +63,59 @@ class PricesApplicationTests {
                         .param("applicationDate", "a"))
                 .andExpect(status().isBadRequest());
     }
+
+    @Test
+    void testGetPriceAt10AMOn14th() throws Exception {
+        mockMvc.perform(get("/api/prices")
+                        .param("productId", "35455")
+                        .param("brandId", "1")
+                        .param("applicationDate", "2020-06-14T10:00:00"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.price").value(35.50))
+                .andExpect(jsonPath("$.currency").value("EUR"));
+    }
+
+    @Test
+    void testGetPriceAt4PMOn14th() throws Exception {
+        mockMvc.perform(get("/api/prices")
+                        .param("productId", "35455")
+                        .param("brandId", "1")
+                        .param("applicationDate", "2020-06-14T16:00:00"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.price").value(25.45))
+                .andExpect(jsonPath("$.currency").value("EUR"));
+    }
+
+    @Test
+    void testGetPriceAt9PMOn14th() throws Exception {
+        mockMvc.perform(get("/api/prices")
+                        .param("productId", "35455")
+                        .param("brandId", "1")
+                        .param("applicationDate", "2020-06-14T21:00:00"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.price").value(35.50))
+                .andExpect(jsonPath("$.currency").value("EUR"));
+    }
+
+    @Test
+    void testGetPriceAt10AMOn15th() throws Exception {
+        mockMvc.perform(get("/api/prices")
+                        .param("productId", "35455")
+                        .param("brandId", "1")
+                        .param("applicationDate", "2020-06-15T10:00:00"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.price").value(30.5))
+                .andExpect(jsonPath("$.currency").value("EUR"));
+    }
+
+    @Test
+    void testGetPriceAt9PMOn16th() throws Exception {
+        mockMvc.perform(get("/api/prices")
+                        .param("productId", "35455")
+                        .param("brandId", "1")
+                        .param("applicationDate", "2020-06-16T21:00:00"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.price").value(38.95))
+                .andExpect(jsonPath("$.currency").value("EUR"));
+    }
 }
